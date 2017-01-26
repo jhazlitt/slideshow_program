@@ -16,6 +16,7 @@ def wait(timeSeconds):
 # An initial sketch time can be entered in seconds
 sketchTime = input('Starting sketch time?')
 
+drawingScore = 0
 thing = os.listdir('../Pictures/')
 
 upperBound = len(thing)
@@ -39,5 +40,7 @@ for count in range(upperBound):
 		img = img.resize((newWidth, newHeight), Image.ANTIALIAS)
 		img.show()
 		wait(sketchTime)
+		drawingScore = drawingScore + 1
+		print str(drawingScore) + ' drawings completed.'
 		# The time allowed to sketch will be decreased by one second with each picture shown
 		sketchTime = sketchTime - 1
