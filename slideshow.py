@@ -3,6 +3,16 @@ import time
 import os
 from PIL import Image
 
+def wait(timeSeconds):
+	soundPlayed = False
+	initialTime = timeSeconds
+	while timeSeconds > 0:
+		time.sleep(1)
+		if (timeSeconds < (0.5 * initialTime)) and not soundPlayed:
+			os.system("aplay ding.wav")
+			soundPlayed = True
+		timeSeconds = timeSeconds - 1
+
 # An initial sketch time can be entered in seconds
 sketchTime = input('Starting sketch time?')
 
@@ -28,6 +38,6 @@ for count in range(upperBound):
 		newWidth = newHeight * width / height
 		img = img.resize((newWidth, newHeight), Image.ANTIALIAS)
 		img.show()
-		time.sleep(sketchTime)
+		wait(sketchTime)
 		# The time allowed to sketch will be decreased by one second with each picture shown
 		sketchTime = sketchTime - 1
