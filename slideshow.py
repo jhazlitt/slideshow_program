@@ -1,6 +1,7 @@
-import random
-import time
 import os
+import random
+import sys
+import time
 from PIL import Image
 
 def wait(timeSeconds):
@@ -44,3 +45,5 @@ for count in range(upperBound):
 		print str(drawingScore) + ' drawings completed.'
 		# The time allowed to sketch will be decreased by one second with each picture shown
 		sketchTime = sketchTime - 1
+		if (sketchTime == 0):
+			sys.exit("Game over.")			
