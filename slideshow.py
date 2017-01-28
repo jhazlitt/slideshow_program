@@ -27,7 +27,7 @@ usedIndexes = []
 for count in range(upperBound):	
 	# Generate a random index number that has not been used before in the session
 	while True:
-		index = random.randint(0,upperBound)
+		index = random.randint(0,upperBound - 1)
 		if index not in usedIndexes:
 			break
 	usedIndexes.append(index)
