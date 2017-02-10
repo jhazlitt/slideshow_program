@@ -4,13 +4,16 @@ import sys
 import time
 from PIL import Image
 
+def playSound():
+	os.system("aplay ding.wav")
+	
 def wait(timeSeconds):
 	soundPlayed = False
 	initialTime = timeSeconds
 	while timeSeconds > 0:
 		time.sleep(1)
 		if (timeSeconds < (0.5 * initialTime)) and not soundPlayed:
-			os.system("aplay ding.wav")
+			playSound()
 			soundPlayed = True
 		timeSeconds = timeSeconds - 1
 
@@ -40,6 +43,7 @@ for count in range(upperBound):
 		newWidth = newHeight * width / height
 		img = img.resize((newWidth, newHeight), Image.ANTIALIAS)
 		img.show()
+		playSound()
 		wait(sketchTime)
 		drawingScore = drawingScore + 1
 		print str(drawingScore) + ' drawings completed.'
