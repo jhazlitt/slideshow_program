@@ -45,6 +45,7 @@ for count in range(upperBound):
 		img.show()
 		playSound()
 		wait(sketchTime)
+		os.popen('killall display')
 		drawingScore = drawingScore + 1
 		print str(drawingScore) + ' drawings completed.'
 		# The time allowed to sketch will be decreased by one second with each picture shown
