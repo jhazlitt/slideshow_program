@@ -76,6 +76,7 @@ def memorizationMode():
 		openImage(image)
 		wait(memorizeTime)
 		os.popen('killall display')
+		playSound()
 		wait(sketchTime)
 		openImage(image)	
 		continueInput = raw_input('Continue?')
