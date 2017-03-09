@@ -29,7 +29,7 @@ def wait(timeSeconds, silent=True):
 			soundPlayed = True
 		timeSeconds = timeSeconds - 1
 
-def sketchMode():
+def copyMode():
 	# This mode will display an image for an amount of time, and when the next image is displayed, the time will be decreased by 1 second.  The intent is to encourage faster sketching.
 	sketchTime = input('Starting sketch time?')
 
@@ -81,11 +81,47 @@ def memorizationMode():
 		openImage(image)	
 		continueInput = raw_input('Continue?')
 
+def fullMode():
+	# This mode will let you do a sketch, ink, color, and shading for each picture
+	drawTime = input('Time to sketch, ink, color, and shade?')
+
+	drawingScore = 0
+	picDirectory = os.listdir('../Pictures/')
+	upperBound = len(picDirectory)
+	usedIndexes = []
+
+	for count in range(upperBound):	
+		# Generate a random index number that has not been used before in the session
+		while True:
+			index = random.randint(0,upperBound - 1)
+			if index not in usedIndexes:
+				break
+		usedIndexes.append(index)
+		image = '../Pictures/' + picDirectory[index]
+		os.system('say sketch')
+		openImage(image)
+		wait(drawTime, False)
+		os.system('say ink')	
+		wait(drawTime, False)
+		os.system('say color')
+		wait(drawTime, False)
+		os.system('say shade')
+		wait(drawTime, False)
+		os.popen('killall display')
+		drawingScore = drawingScore + 1
+		print str(drawingScore) + ' drawings completed.'
+		# The time allowed to draw will be decreased by one second with each picture shown
+		drawTime = drawTime - 1
+		if (drawTime == 0):
+			sys.exit("Game over.")			
+
 while True:
-	mode = input('Enter a mode number.  1: Sketch, 2: Memorization\n')
+	mode = input('Enter a mode number.  1: Copy, 2: Memorization, 3: Full\n')
 	if (mode == 1):
-		sketchMode()
+		copyMode()
 	elif (mode == 2):
 		memorizationMode()
+	elif (mode == 3):
+		fullMode()
 	else:
 		print('Invalid mode number.')
