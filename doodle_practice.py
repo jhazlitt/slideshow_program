@@ -23,14 +23,24 @@ def wait(timeSeconds, silent=True):
 	while timeSeconds > 0:
 		print timeSeconds
 		time.sleep(1)
-		if (timeSeconds < (0.5 * initialTime)) and not soundPlayed:
+		if (timeSeconds <= (0.5 * initialTime)) and not soundPlayed:
 			if not silent:
 				playSound()
 			soundPlayed = True
 		timeSeconds = timeSeconds - 1
 
+def genericTimer():
+	drawingScore = 0
+	sketchTime = input('Timer seconds?')
+
+	while True:
+		wait(sketchTime, False)		
+		drawingScore += 1
+		print str(drawingScore) + " drawings completed."
+		playSound()
+
 def copyMode():
-	# This mode will display an image for an amount of time, and when the next image is displayed, the time will be decreased by 1 second.  The intent is to encourage faster sketching.
+	# This mode will display an image for an amount of time, and when the next image is displayed, the time will be decreased by a specified percentage.  The intent is to encourage faster sketching.
 	sketchTime = input('Starting sketch time?')
 
 	drawingScore = 0
@@ -51,8 +61,8 @@ def copyMode():
 		os.popen('killall display')
 		drawingScore = drawingScore + 1
 		print str(drawingScore) + ' drawings completed.'
-		# The time allowed to sketch will be decreased by one second with each picture shown
-		sketchTime = sketchTime - 1
+		# The time allowed to sketch will be decreased by a certain percent each time
+		sketchTime = 0.98 * sketchTime
 		if (sketchTime == 0):
 			sys.exit("Game over.")			
 
@@ -116,12 +126,14 @@ def fullMode():
 			sys.exit("Game over.")			
 
 while True:
-	mode = input('Enter a mode number.  1: Copy, 2: Memorization, 3: Full\n')
+	mode = input('Enter a mode number.  1: Copy, 2: Memorization, 3: Full, 4: Generic Timer\n')
 	if (mode == 1):
 		copyMode()
 	elif (mode == 2):
 		memorizationMode()
 	elif (mode == 3):
 		fullMode()
+	elif (mode == 4):
+		genericTimer()
 	else:
 		print('Invalid mode number.')
