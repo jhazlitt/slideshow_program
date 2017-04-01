@@ -1,11 +1,15 @@
+import atexit
 import os
 import random
 import sys
 import time
 from PIL import Image
 
-def playSound():
-	os.system("aplay ding.wav")
+def writeScore(scoreCount):
+	open('total_score.txt', 'r+')
+
+def playSound(soundName):
+	os.system("aplay " + soundName + "")
 	
 def openImage(image):
 	with Image.open(image) as img:
@@ -15,7 +19,7 @@ def openImage(image):
 		newWidth = newHeight * width / height
 		img = img.resize((newWidth, newHeight), Image.ANTIALIAS)
 		img.show()
-		playSound()
+		playSound("doorbell.wav")
 
 def wait(timeSeconds, silent=True):
 	soundPlayed = False
@@ -25,7 +29,7 @@ def wait(timeSeconds, silent=True):
 		time.sleep(1)
 		if (timeSeconds <= (0.5 * initialTime)) and not soundPlayed:
 			if not silent:
-				playSound()
+				playSound("ding.wav")
 			soundPlayed = True
 		timeSeconds = timeSeconds - 1
 
@@ -38,6 +42,34 @@ def genericTimer():
 		drawingScore += 1
 		print str(drawingScore) + " drawings completed."
 		playSound()
+def speedMode():
+	# This mode will display the same image 4 consecutive times, decreasing the time allowed by 25% each time
+	sketchTime = input('Starting sketch time?')
+
+	drawingScore = 0
+	picDirectory = os.listdir('../Pictures/')
+	upperBound = len(picDirectory)
+	usedIndexes = []
+
+	for count in range(upperBound):	
+		# Generate a random index number that has not been used before in the session
+		while True:
+			index = random.randint(0,upperBound - 1)
+			if index not in usedIndexes:
+				break
+		usedIndexes.append(index)
+		image = '../Pictures/' + picDirectory[index]
+		openImage(image)
+		wait(sketchTime, False)
+		playSound("doorbell.wav")
+		wait(sketchTime * 0.75, False)
+		playSound("doorbell.wav")
+		wait(sketchTime * 0.5, False)
+		playSound("doorbell.wav")
+		wait(sketchTime * 0.25, False)
+		os.popen('killall display')
+		drawingScore = drawingScore + 1
+		print str(drawingScore) + ' drawings completed.'
 
 def copyMode():
 	# This mode will display an image for an amount of time, and when the next image is displayed, the time will be decreased by a specified percentage.  The intent is to encourage faster sketching.
@@ -126,7 +158,7 @@ def fullMode():
 			sys.exit("Game over.")			
 
 while True:
-	mode = input('Enter a mode number.  1: Copy, 2: Memorization, 3: Full, 4: Generic Timer\n')
+	mode = input('Enter a mode number.  1: Copy, 2: Memorization, 3: Full, 4: Generic Timer, 5: Speed Mode, 0: Reset Score\n')
 	if (mode == 1):
 		copyMode()
 	elif (mode == 2):
@@ -135,5 +167,11 @@ while True:
 		fullMode()
 	elif (mode == 4):
 		genericTimer()
+	elif (mode == 5):
+		speedMode()
+	elif (mode == 0):
+		f = open('total_score.txt', 'w')
+		f.write('0')
+		f.close()
 	else:
 		print('Invalid mode number.')
