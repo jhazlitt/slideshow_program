@@ -42,8 +42,9 @@ def genericTimer():
 		drawingScore += 1
 		print str(drawingScore) + " drawings completed."
 		playSound()
+
 def speedMode():
-	# This mode will display the same image 4 consecutive times, decreasing the time allowed by 25% each time
+	# This mode will display the same image a number of consecutive times, decreasing the amount of time allowed each time
 	sketchTime = input('Starting sketch time?')
 
 	drawingScore = 0
@@ -62,14 +63,13 @@ def speedMode():
 		openImage(image)
 		wait(sketchTime, False)
 		playSound("doorbell.wav")
-		wait(sketchTime * 0.75, False)
+		wait(sketchTime * 0.66, False)
 		playSound("doorbell.wav")
-		wait(sketchTime * 0.5, False)
-		playSound("doorbell.wav")
-		wait(sketchTime * 0.25, False)
+		wait(sketchTime * 0.33, False)
 		os.popen('killall display')
 		drawingScore = drawingScore + 1
 		print str(drawingScore) + ' drawings completed.'
+		continueInput = raw_input('Continue?')
 
 def copyMode():
 	# This mode will display an image for an amount of time, and when the next image is displayed, the time will be decreased by a specified percentage.  The intent is to encourage faster sketching.
@@ -158,7 +158,7 @@ def fullMode():
 			sys.exit("Game over.")			
 
 while True:
-	mode = input('Enter a mode number.  1: Copy, 2: Memorization, 3: Full, 4: Generic Timer, 5: Speed Mode, 0: Reset Score\n')
+	mode = input('Enter a mode number.  1: Copy, 2: Memorization, 3: Full, 4: Generic Timer, 5: Speed, 0: Reset Score\n')
 	if (mode == 1):
 		copyMode()
 	elif (mode == 2):
