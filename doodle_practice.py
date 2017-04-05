@@ -127,7 +127,7 @@ def memorizationMode():
 
 def fullMode():
 	# This mode will let you do a sketch, ink, color, and shading for each picture
-	drawTime = input('Time to sketch, ink, color, and shade?')
+	drawTime = input('Start time?')
 
 	drawingScore = 0
 	picDirectory = os.listdir('../Pictures/')
@@ -146,11 +146,11 @@ def fullMode():
 		openImage(image)
 		wait(drawTime, False)
 		os.system('say ink')	
-		wait(drawTime, False)
+		wait(drawTime * 2, False)
 		os.system('say color')
-		wait(drawTime, False)
+		wait(drawTime * 3, False)
 		os.system('say shade')
-		wait(drawTime, False)
+		wait(drawTime * 4, False)
 		os.popen('killall display')
 		drawingScore = drawingScore + 1
 		print str(drawingScore) + ' drawings completed.'
