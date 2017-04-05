@@ -63,9 +63,9 @@ def speedMode():
 		openImage(image)
 		wait(sketchTime, False)
 		playSound("doorbell.wav")
-		wait(sketchTime * 0.66, False)
+		wait(sketchTime * 0.5, False)
 		playSound("doorbell.wav")
-		wait(sketchTime * 0.33, False)
+		wait(sketchTime * 0.25, False)
 		os.popen('killall display')
 		drawingScore = drawingScore + 1
 		print str(drawingScore) + ' drawings completed.'
