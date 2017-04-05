@@ -69,7 +69,9 @@ def speedMode():
 		os.popen('killall display')
 		drawingScore = drawingScore + 1
 		print str(drawingScore) + ' drawings completed.'
-		continueInput = raw_input('Continue?')
+		print 'Break time.'
+		wait(60)
+		#continueInput = raw_input('Continue?')
 
 def copyMode():
 	# This mode will display an image for an amount of time, and when the next image is displayed, the time will be decreased by a specified percentage.  The intent is to encourage faster sketching.
@@ -94,7 +96,7 @@ def copyMode():
 		drawingScore = drawingScore + 1
 		print str(drawingScore) + ' drawings completed.'
 		# The time allowed to sketch will be decreased by a certain percent each time
-		sketchTime = 0.98 * sketchTime
+		sketchTime = 0.97 * sketchTime
 		if (sketchTime == 0):
 			sys.exit("Game over.")			
 
