@@ -15,7 +15,7 @@ def openImage(image):
 	with Image.open(image) as img:
 		width = img.size[0]
 		height = img.size[1]
-		newHeight = 850
+		newHeight = 500 # used to be 850
 		newWidth = newHeight * width / height
 		img = img.resize((newWidth, newHeight), Image.ANTIALIAS)
 		img.show()
@@ -154,6 +154,10 @@ def fullMode():
 		os.popen('killall display')
 		drawingScore = drawingScore + 1
 		print str(drawingScore) + ' drawings completed.'
+		os.system('say break')
+		breakSeconds = 90
+		print '' + str(breakSeconds) + '  second break'
+		wait(breakSeconds)
 		# The time allowed to draw will be decreased by one second with each picture shown
 		drawTime = drawTime - 1
 		if (drawTime == 0):
