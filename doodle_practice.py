@@ -89,6 +89,9 @@ def copyMode():
 		os.popen('killall display')
 		drawingScore = drawingScore + 1
 		print str(drawingScore) + ' drawings completed.'
+		continueInput = raw_input('Continue? (To delete previous picture, press d)')
+		if continueInput = 'd'
+			os.remove(image)
 		# The time allowed to sketch will be decreased by a certain percent each time
 		sketchTime = 0.97 * sketchTime
 		if (sketchTime == 0):
