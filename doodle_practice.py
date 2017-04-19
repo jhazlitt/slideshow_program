@@ -22,16 +22,10 @@ def openImage(image):
 		playSound("doorbell.wav")
 
 def wait(timeSeconds, silent=True):
-	soundPlayed = False
-	initialTime = timeSeconds
-	while timeSeconds > 0:
-		print timeSeconds
-		time.sleep(1)
-		if (timeSeconds <= (0.5 * initialTime)) and not soundPlayed:
-			if not silent:
-				playSound("ding.wav")
-			soundPlayed = True
-		timeSeconds = timeSeconds - 1
+	time.sleep(timeSeconds/2)
+	if not silent:
+		playSound("ding.wav")
+	time.sleep(timeSeconds/2)
 
 def genericTimer():
 	drawingScore = 0
