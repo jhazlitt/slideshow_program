@@ -152,7 +152,7 @@ def memorizationMode():
 		openImage(image)
 		wait(memorizeTime)
 		os.popen('killall display')
-		playSound()
+		playSound('doorbell.wav')
 		wait(sketchTime)
 		openImage(image)	
 		continueInput = raw_input('Continue?')
