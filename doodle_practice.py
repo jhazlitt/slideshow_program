@@ -10,6 +10,14 @@ def writeScore(scoreCount):
 
 def playSound(soundName):
 	os.system("aplay " + soundName + "")
+
+def promptContinue():
+	continueInput = raw_input('Continue? (To erase previous image, press e.  To return to menu, press m.)')
+	if continueInput == 'e':
+		os.remove(image)
+	elif continueInput == 'm':
+		os.system('clear')
+		return
 	
 def openImage(image, rotationDegrees=0):
 	with Image.open(image) as img:
@@ -91,12 +99,7 @@ def copyMode():
 		os.popen('killall display')
 		drawingScore = drawingScore + 1
 		print str(drawingScore) + ' drawings completed.'
-		continueInput = raw_input('Continue? (To erase previous image, press e.  To return to menu, press m.)')
-		if continueInput == 'e':
-			os.remove(image)
-		elif continueInput == 'm':
-			os.system('clear')
-			return
+		promptContinue()
 		# The time allowed to sketch will be decreased by a certain percent each time
 		sketchTime = 0.97 * sketchTime
 		if (sketchTime == 0):
@@ -127,9 +130,7 @@ def rotationMode():
 		os.popen('killall display')
 		drawingScore = drawingScore + 1
 		print str(drawingScore) + ' drawings completed.'
-		continueInput = raw_input('Continue? (To erase previous image, press e)')
-		if continueInput == 'e':
-			os.remove(image)
+		promptContinue()
 		# The time allowed to sketch will be decreased by a certain percent each time
 		sketchTime = 0.97 * sketchTime
 		if (sketchTime == 0):
