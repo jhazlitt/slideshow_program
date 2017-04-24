@@ -159,7 +159,7 @@ def memorizationMode():
 		playSound('doorbell.wav')
 		wait(sketchTime)
 		openImage(image)	
-		continueInput = raw_input('Continue?')
+		promptContinue()
 
 def fullMode():
 	# This mode will let you do a sketch, ink, color, and shading for each picture
