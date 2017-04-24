@@ -91,9 +91,12 @@ def copyMode():
 		os.popen('killall display')
 		drawingScore = drawingScore + 1
 		print str(drawingScore) + ' drawings completed.'
-		continueInput = raw_input('Continue? (To erase previous image, press e)')
+		continueInput = raw_input('Continue? (To erase previous image, press e.  To return to menu, press m.)')
 		if continueInput == 'e':
 			os.remove(image)
+		elif continueInput == 'm':
+			os.system('clear')
+			return
 		# The time allowed to sketch will be decreased by a certain percent each time
 		sketchTime = 0.97 * sketchTime
 		if (sketchTime == 0):
