@@ -72,9 +72,9 @@ def speedMode():
 		os.popen('killall display')
 		drawingScore = drawingScore + 1
 		print str(drawingScore) + ' drawings completed.'
+		promptContinue()
 		print 'Break time.'
 		wait(60)
-		#continueInput = raw_input('Continue?')
 
 def copyMode():
 	# This mode will display an image for an amount of time, and when the next image is displayed, the time will be decreased by a specified percentage.  The intent is to encourage faster sketching.
@@ -190,6 +190,7 @@ def fullMode():
 		os.popen('killall display')
 		drawingScore = drawingScore + 1
 		print str(drawingScore) + ' drawings completed.'
+		promptContinue()
 		os.system('say break')
 		breakSeconds = 90
 		print '' + str(breakSeconds) + '  second break'
