@@ -5,6 +5,8 @@ import sys
 import time
 from PIL import Image
 
+picDirectory = os.listdir('../Pictures/')
+
 def writeScore(scoreCount):
 	open('total_score.txt', 'r+')
 
@@ -50,7 +52,6 @@ def speedMode():
 	sketchTime = input('Starting sketch time?')
 
 	drawingScore = 0
-	picDirectory = os.listdir('../Pictures/')
 	upperBound = len(picDirectory)
 	usedIndexes = []
 
@@ -80,7 +81,6 @@ def copyMode():
 	sketchTime = input('Starting sketch time?')
 
 	drawingScore = 0
-	picDirectory = os.listdir('../Pictures/')
 	upperBound = len(picDirectory)
 	usedIndexes = []
 
@@ -110,7 +110,6 @@ def rotationMode():
 	sketchTime = input('Starting sketch time?')
 
 	drawingScore = 0
-	picDirectory = os.listdir('../Pictures/')
 	upperBound = len(picDirectory)
 	usedIndexes = []
 
@@ -141,7 +140,6 @@ def memorizationMode():
 	memorizeTime = input('Time to memorize image?')
 	sketchTime = input('Time to sketch image?')
 
-	picDirectory = os.listdir('../Pictures/')
 	upperBound = len(picDirectory)
 	usedIndexes = []
 
@@ -166,7 +164,6 @@ def fullMode():
 	drawTime = input('Start time?')
 
 	drawingScore = 0
-	picDirectory = os.listdir('../Pictures/')
 	upperBound = len(picDirectory)
 	usedIndexes = []
 
