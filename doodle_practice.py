@@ -72,7 +72,7 @@ def speedMode():
 		os.popen('killall display')
 		drawingScore = drawingScore + 1
 		print str(drawingScore) + ' drawings completed.'
-		promptContinue()
+		promptContinue(image)
 		print 'Break time.'
 		wait(60)
 
@@ -129,7 +129,7 @@ def rotationMode():
 		os.popen('killall display')
 		drawingScore = drawingScore + 1
 		print str(drawingScore) + ' drawings completed.'
-		promptContinue()
+		promptContinue(image)
 		# The time allowed to sketch will be decreased by a certain percent each time
 		sketchTime = 0.97 * sketchTime
 		if (sketchTime == 0):
@@ -157,7 +157,7 @@ def memorizationMode():
 		playSound('doorbell.wav')
 		wait(sketchTime)
 		openImage(image)	
-		promptContinue()
+		promptContinue(image)
 
 def fullMode():
 	# This mode will let you do a sketch, ink, color, and shading for each picture
@@ -190,7 +190,7 @@ def fullMode():
 		os.popen('killall display')
 		drawingScore = drawingScore + 1
 		print str(drawingScore) + ' drawings completed.'
-		promptContinue()
+		promptContinue(image)
 		os.system('say break')
 		breakSeconds = 90
 		print '' + str(breakSeconds) + '  second break'
