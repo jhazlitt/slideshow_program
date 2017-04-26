@@ -5,6 +5,7 @@ import sys
 import time
 from PIL import Image
 
+drawingScore = 0
 picDirectory = os.listdir('../Pictures/')
 
 def writeScore(scoreCount):
@@ -38,7 +39,6 @@ def wait(timeSeconds, silent=True):
 	time.sleep(timeSeconds/2)
 
 def genericTimer():
-	drawingScore = 0
 	sketchTime = input('Timer seconds?')
 
 	while True:
@@ -51,7 +51,6 @@ def speedMode():
 	# This mode will display the same image a number of consecutive times, decreasing the amount of time allowed each time
 	sketchTime = input('Starting sketch time?')
 
-	drawingScore = 0
 	upperBound = len(picDirectory)
 	usedIndexes = []
 
@@ -80,7 +79,6 @@ def copyMode():
 	# This mode will display an image for an amount of time, and when the next image is displayed, the time will be decreased by a specified percentage.  The intent is to encourage faster sketching.
 	sketchTime = input('Starting sketch time?')
 
-	drawingScore = 0
 	upperBound = len(picDirectory)
 	usedIndexes = []
 
@@ -109,7 +107,6 @@ def rotationMode():
 	# This mode will display an image for an amount of time, and when the next image is displayed, the time will be decreased by a specified percentage.  The intent is to encourage faster sketching.  It will rotate the image either 90, 180, or 270 degrees.
 	sketchTime = input('Starting sketch time?')
 
-	drawingScore = 0
 	upperBound = len(picDirectory)
 	usedIndexes = []
 
@@ -163,7 +160,6 @@ def fullMode():
 	# This mode will let you do a sketch, ink, color, and shading for each picture
 	drawTime = input('Start time?')
 
-	drawingScore = 0
 	upperBound = len(picDirectory)
 	usedIndexes = []
 
