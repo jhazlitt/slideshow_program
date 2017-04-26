@@ -72,8 +72,6 @@ def speedMode():
 		drawingScore = drawingScore + 1
 		print str(drawingScore) + ' drawings completed.'
 		promptContinue(image)
-		print 'Break time.'
-		wait(60)
 
 def copyMode():
 	# This mode will display an image for an amount of time, and when the next image is displayed, the time will be decreased by a specified percentage.  The intent is to encourage faster sketching.
@@ -187,12 +185,8 @@ def fullMode():
 		drawingScore = drawingScore + 1
 		print str(drawingScore) + ' drawings completed.'
 		promptContinue(image)
-		os.system('say break')
-		breakSeconds = 90
-		print '' + str(breakSeconds) + '  second break'
-		wait(breakSeconds)
 		# The time allowed to draw will be decreased by one second with each picture shown
-		drawTime = drawTime - 1
+		drawTime = drawTime * 0.97
 		if (drawTime == 0):
 			sys.exit("Game over.")			
 
