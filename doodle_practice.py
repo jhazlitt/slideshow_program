@@ -15,13 +15,14 @@ def playSound(soundName):
 	os.system("aplay " + soundName + "")
 
 def promptContinue(image):
+	drawingScore = drawingScore + 1
 	continueInput = raw_input('Continue? (To erase previous image, press e.  To return to menu, press m.)')
 	if continueInput == 'e':
 		os.remove(image)
 	elif continueInput == 'm':
 		os.system('clear')
 		return
-	
+		
 def openImage(image, rotationDegrees=0):
 	with Image.open(image) as img:
 		width = img.size[0]
@@ -43,7 +44,6 @@ def genericTimer():
 
 	while True:
 		wait(sketchTime, False)		
-		drawingScore += 1
 		print str(drawingScore) + " drawings completed."
 		playSound()
 
@@ -69,7 +69,6 @@ def speedMode():
 		playSound("doorbell.wav")
 		wait(sketchTime * 0.25, False)
 		os.popen('killall display')
-		drawingScore = drawingScore + 1
 		print str(drawingScore) + ' drawings completed.'
 		promptContinue(image)
 
@@ -93,7 +92,6 @@ def copyMode():
 		print(str(sketchTime) + ' seconds')
 		wait(sketchTime, False)
 		os.popen('killall display')
-		drawingScore = drawingScore + 1
 		print str(drawingScore) + ' drawings completed.'
 		promptContinue(image)
 		# The time allowed to sketch will be decreased by a certain percent each time
@@ -122,7 +120,6 @@ def rotationMode():
 		print(str(sketchTime) + ' seconds')
 		wait(sketchTime, False)
 		os.popen('killall display')
-		drawingScore = drawingScore + 1
 		print str(drawingScore) + ' drawings completed.'
 		promptContinue(image)
 		# The time allowed to sketch will be decreased by a certain percent each time
@@ -182,7 +179,6 @@ def fullMode():
 		os.system('say shade')
 		wait(drawTime * 4, False)
 		os.popen('killall display')
-		drawingScore = drawingScore + 1
 		print str(drawingScore) + ' drawings completed.'
 		promptContinue(image)
 		# The time allowed to draw will be decreased by one second with each picture shown
