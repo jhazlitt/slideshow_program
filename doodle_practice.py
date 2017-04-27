@@ -29,7 +29,7 @@ def promptContinue(image):
 		os.remove(image)
 	elif continueInput == 'm':
 		os.system('clear')
-		return
+		return False
 		
 def openImage(image, rotationDegrees=0):
 	with Image.open(image) as img:
@@ -80,7 +80,10 @@ def speedMode():
 		playSound("doorbell.wav")
 		wait(sketchTime * 0.25, False)
 		os.popen('killall display')
-		print str(drawingScore) + ' drawings completed.'
+		os.system('clear')
+		increaseScore()
+		displayScore()
+		print('Seconds to complete this drawing: ' + str(sketchTime))
 		promptContinue(image)
 
 def copyMode():
@@ -106,7 +109,8 @@ def copyMode():
 		increaseScore()
 		displayScore()
 		print('Seconds to complete this drawing: ' + str(sketchTime))
-		promptContinue(image)
+		if not promptContinue(image):
+			return
 		# The time allowed to sketch will be decreased by a certain percent each time
 		sketchTime = 0.97 * sketchTime
 		if (sketchTime == 0):
@@ -133,7 +137,10 @@ def rotationMode():
 		print(str(sketchTime) + ' seconds')
 		wait(sketchTime, False)
 		os.popen('killall display')
-		print str(drawingScore) + ' drawings completed.'
+		os.system('clear')
+		increaseScore()
+		displayScore()
+		print('Seconds to complete this drawing: ' + str(sketchTime))
 		promptContinue(image)
 		# The time allowed to sketch will be decreased by a certain percent each time
 		sketchTime = 0.97 * sketchTime
@@ -162,6 +169,10 @@ def memorizationMode():
 		playSound('doorbell.wav')
 		wait(sketchTime)
 		openImage(image)	
+		os.system('clear')
+		increaseScore()
+		displayScore()
+		print('Seconds to complete this drawing: ' + str(sketchTime))
 		promptContinue(image)
 
 def fullMode():
@@ -192,7 +203,10 @@ def fullMode():
 		os.system('say shade')
 		wait(drawTime * 4, False)
 		os.popen('killall display')
-		print str(drawingScore) + ' drawings completed.'
+		os.system('clear')
+		increaseScore()
+		displayScore()
+		print('Seconds to complete this drawing: ' + str(sketchTime))
 		promptContinue(image)
 		# The time allowed to draw will be decreased by one second with each picture shown
 		drawTime = drawTime * 0.97
