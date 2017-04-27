@@ -29,7 +29,7 @@ def promptContinue(image):
 		os.remove(image)
 	elif continueInput == 'm':
 		os.system('clear')
-		return False
+		return True
 		
 def openImage(image, rotationDegrees=0):
 	with Image.open(image) as img:
@@ -109,7 +109,7 @@ def copyMode():
 		increaseScore()
 		displayScore()
 		print('Seconds to complete this drawing: ' + str(sketchTime))
-		if not promptContinue(image):
+		if promptContinue(image):
 			return
 		# The time allowed to sketch will be decreased by a certain percent each time
 		sketchTime = 0.97 * sketchTime
