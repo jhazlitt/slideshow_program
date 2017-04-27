@@ -5,17 +5,25 @@ import sys
 import time
 from PIL import Image
 
-drawingScore = 0
 picDirectory = os.listdir('../Pictures/')
 
-def writeScore(scoreCount):
-	open('total_score.txt', 'r+')
+def displayScore():
+	score = open('total_score.txt').readlines()
+	print 'Drawings completed so far: ' + score[0]
+
+def increaseScore():
+	f = open('total_score.txt','r')
+	score = f.readlines()
+	score = int(score[0])
+	score += 1
+	f.close()
+	f = open('total_score.txt','w')
+	f.write(str(score))
 
 def playSound(soundName):
 	os.system("aplay " + soundName + "")
 
 def promptContinue(image):
-	drawingScore = drawingScore + 1
 	continueInput = raw_input('Continue? (To erase previous image, press e.  To return to menu, press m.)')
 	if continueInput == 'e':
 		os.remove(image)
@@ -32,6 +40,9 @@ def openImage(image, rotationDegrees=0):
 		img = img.resize((newWidth, newHeight), Image.ANTIALIAS)
 		img.rotate(rotationDegrees).show()
 		playSound("doorbell.wav")
+
+def resetScore():
+	open('total_score.txt', 'w').write('0')
 
 def wait(timeSeconds, silent=True):
 	time.sleep(timeSeconds/2)
@@ -89,10 +100,12 @@ def copyMode():
 		image = '../Pictures/' + picDirectory[index]
 		openImage(image)
 		os.system('clear')
-		print(str(sketchTime) + ' seconds')
 		wait(sketchTime, False)
 		os.popen('killall display')
-		print str(drawingScore) + ' drawings completed.'
+		os.system('clear')
+		increaseScore()
+		displayScore()
+		print('Seconds to complete this drawing: ' + str(sketchTime))
 		promptContinue(image)
 		# The time allowed to sketch will be decreased by a certain percent each time
 		sketchTime = 0.97 * sketchTime
@@ -185,6 +198,8 @@ def fullMode():
 		drawTime = drawTime * 0.97
 		if (drawTime == 0):
 			sys.exit("Game over.")			
+
+resetScore()
 
 while True:
 	mode = input('Enter a mode number.  1: Copy, 2: Memorization, 3: Full, 4: Generic Timer, 5: Speed, 6: Rotation, 0: Reset Score\n')
