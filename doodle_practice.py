@@ -54,9 +54,8 @@ def genericTimer():
 	sketchTime = input('Timer seconds?')
 
 	while True:
+		playSound("doorbell.wav")
 		wait(sketchTime, False)		
-		print str(drawingScore) + " drawings completed."
-		playSound()
 
 def speedMode():
 	# This mode will display the same image a number of consecutive times, decreasing the amount of time allowed each time
