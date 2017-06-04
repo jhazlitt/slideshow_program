@@ -11,6 +11,10 @@ def displayScore():
 	score = open('total_score.txt').readlines()
 	print 'Drawings completed so far: ' + score[0]
 
+def sayScore():
+	score = open('total_score.txt').readlines()
+	os.system('say ' + score[0] + ' drawings complete')
+
 def increaseScore():
 	f = open('total_score.txt','r')
 	score = f.readlines()
@@ -120,6 +124,7 @@ def copyMode():
 		os.system('clear')
 		increaseScore()
 		displayScore()
+		sayScore()
 		print('Seconds to complete this drawing: ' + str(sketchTime))
 		if (not continuousMode):
 			if promptContinue(image):
