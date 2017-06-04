@@ -31,6 +31,17 @@ def promptContinue(image):
 		os.system('clear')
 		return True
 		
+def promptContinuousMode():
+	while True:
+		continuousMode = raw_input('Continuous mode? (y or n)')
+		os.system('clear')
+		if (continuousMode == 'y' or continuousMode == 'n'):
+			break
+	if (continuousMode == 'y'):
+		return True
+	else:
+		return False
+
 def openImage(image, rotationDegrees=0):
 	with Image.open(image) as img:
 		width = img.size[0]
@@ -87,11 +98,7 @@ def speedMode():
 
 def copyMode():
 	# This mode will display an image for an amount of time, and when the next image is displayed, the time will be decreased by a specified percentage.  The intent is to encourage faster sketching.
-	while True:
-		continuousMode = raw_input('Continuous mode? (y or n)')
-		os.system('clear')
-		if (continuousMode == 'y' or continuousMode == 'n'):
-			break
+	continuousMode = promptContinuousMode()
 
 	sketchTime = input('Starting sketch time?')
 
@@ -114,7 +121,7 @@ def copyMode():
 		increaseScore()
 		displayScore()
 		print('Seconds to complete this drawing: ' + str(sketchTime))
-		if (continuousMode == 'n'):
+		if (not continuousMode):
 			if promptContinue(image):
 				return
 		# The time allowed to sketch will be decreased by a certain percent each time
