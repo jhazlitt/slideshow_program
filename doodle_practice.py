@@ -35,17 +35,6 @@ def promptContinue(image):
 		os.system('clear')
 		return True
 		
-def promptContinuousMode():
-	while True:
-		continuousMode = raw_input('Continuous mode? (y or n)')
-		os.system('clear')
-		if (continuousMode == 'y' or continuousMode == 'n'):
-			break
-	if (continuousMode == 'y'):
-		return True
-	else:
-		return False
-
 def promptMode(modeName):
 	while True:
 		userResponse = raw_input(modeName + ' mode? (y or n)')
