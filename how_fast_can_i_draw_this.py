@@ -125,11 +125,11 @@ def copyMode():
 		else:
 			playSound('doorbell.wav')
 			wait(sketchTime, False)
+			sayScore()
 		os.popen('killall display')
 		os.system('clear')
 		increaseScore()
 		displayScore()
-		sayScore()
 		print('Seconds to complete this drawing: ' + str(sketchTime))
 		if (not continuousMode):
 			if promptContinue(image):
