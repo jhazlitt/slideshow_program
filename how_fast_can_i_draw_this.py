@@ -53,7 +53,6 @@ def openImage(image, rotationDegrees=0):
 		newWidth = newHeight * width / height
 		img = img.resize((newWidth, newHeight), Image.ANTIALIAS)
 		img.rotate(rotationDegrees).show()
-		playSound("doorbell.wav")
 
 def resetScore():
 	open('total_score.txt', 'w').write('0')
@@ -101,9 +100,9 @@ def speedMode():
 
 def copyMode():
 	# This mode will display an image for an amount of time, and when the next image is displayed, the time will be decreased by a specified percentage.  The intent is to encourage faster sketching.
+	os.system('clear')
 	continuousMode = promptMode('Continuous')
 	muted = promptMode('Muted')
-
 	sketchTime = input('Starting sketch time?')
 
 	upperBound = len(picDirectory)
@@ -121,9 +120,10 @@ def copyMode():
 		image = '../Pictures/' + picDirectory[index]
 		openImage(image)
 		os.system('clear')
-		if (muted == 'y'):
+		if muted:
 			wait(sketchTime)
 		else:
+			playSound('doorbell.wav')
 			wait(sketchTime, False)
 		os.popen('killall display')
 		os.system('clear')
