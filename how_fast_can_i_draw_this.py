@@ -28,12 +28,16 @@ def playSound(soundName):
 	os.system("aplay " + soundName + "")
 
 def promptContinue(image):
-	continueInput = raw_input('Continue? (To erase previous image, press e.  To return to menu, press m.)')
+	continueInput = raw_input('Continue? (To erase previous image, press e.  To return to menu, press m.  To skip image, press n.)')
 	if continueInput == 'e':
 		os.remove(image)
 	elif continueInput == 'm':
 		os.system('clear')
 		return True
+	elif continueInput == 'n':
+		os.system('clear')
+		return False
+	return True
 		
 def promptMode(modeName):
 	while True:
@@ -213,18 +217,21 @@ def fullMode():
 				break
 		usedIndexes.append(index)
 		image = '../Pictures/' + picDirectory[index]
-		os.system('say sketch')
 		openImage(image)
+		if not promptContinue(image):
+			os.popen('killall display')
+			continue
+		os.system('say sketch')
 		wait(drawTime, False)
 		playSound('doorbell.wav')
 		os.system('say ink')	
-		wait(drawTime * 2, False)
+		wait(drawTime, False)
 		playSound('doorbell.wav')
 		os.system('say color')
-		wait(drawTime * 3, False)
+		wait(drawTime, False)
 		playSound('doorbell.wav')
 		os.system('say shade')
-		wait(drawTime * 4, False)
+		wait(drawTime, False)
 		os.popen('killall display')
 		os.system('clear')
 		increaseScore()
