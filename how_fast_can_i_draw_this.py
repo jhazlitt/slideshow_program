@@ -229,10 +229,10 @@ def fullMode():
 		os.system('clear')
 		increaseScore()
 		displayScore()
-		print('Seconds to complete this drawing: ' + str(sketchTime))
+		print('Seconds to complete this drawing: ' + str(drawTime))
 		promptContinue(image)
 		# The time allowed to draw will be decreased by one second with each picture shown
-		drawTime = drawTime * 0.97
+		drawTime = drawTime * 0.98
 		if (drawTime == 0):
 			sys.exit("Game over.")			
 
