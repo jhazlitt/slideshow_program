@@ -56,7 +56,12 @@ def openImage(image, rotationDegrees=0):
 		newHeight = 700 # used to be 500
 		newWidth = newHeight * width / height
 		img = img.resize((newWidth, newHeight), Image.ANTIALIAS)
-		img.rotate(rotationDegrees).show()
+		img.rotate(rotationDegrees)
+		isFlipped = random.randint(0,1)
+		if (isFlipped == 0):
+			img.show()
+		else:
+			img.transpose(Image.FLIP_LEFT_RIGHT).show()
 
 def resetScore():
 	open('total_score.txt', 'w').write('0')
@@ -234,6 +239,7 @@ def fullMode():
 		wait(drawTime, False)
 		os.popen('killall display')
 		os.system('clear')
+		playSound('doorbell.wav')
 		increaseScore()
 		displayScore()
 		print('Seconds to complete this drawing: ' + str(drawTime))
