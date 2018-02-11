@@ -28,10 +28,8 @@ def playSound(soundName):
 	os.system("aplay " + soundName + "")
 
 def promptContinue(image):
-	continueInput = raw_input('Continue? (To erase previous image, press e.  To return to menu, press m.  To skip image, press n.)')
-	if continueInput == 'e':
-		os.remove(image)
-	elif continueInput == 'm':
+	continueInput = raw_input('Continue? (To return to menu, press m.  To skip image, press n.)')
+	if continueInput == 'm':
 		os.system('clear')
 		return True
 	elif continueInput == 'n':
